@@ -9,24 +9,31 @@ import static java.lang.System.exit;
  */
 public class MainApplication {
     static String powerOffPrompt = "Calculator powering off...";
-
+    public class varSpace {
+        public static double num1;
+        public static double num2;
+        public static double mem;
+        public static String userChoice;
+    }
 
     boolean activeCalc = true;
 
     public static void main(String[] args) {
         String powerOffPrompt = "Calculator powering off...";
         String inputPrompt = "Enter letter to select feature: ";
-        String addPrompt = "Add two numbers:\n";
-        String subPrompt = "Subtract two numbers\n";
+        // String addPrompt = "Add two numbers:\n";
+        // String subPrompt = "Subtract two numbers\n";
 
 
         MainApplication mainApp = new MainApplication();
         ScientificFts tester = new ScientificFts();
         Calculator coreCalc = new Calculator();
+        Console userInput = new Console();
 
         String input;
+        String prompt = null;
         boolean activeCalc = true;
-        String doub = "d";
+        // String d = "d";
         String m = "m";
         String t = "t";
         String add = "+";
@@ -49,43 +56,65 @@ public class MainApplication {
 */
 
         while (activeCalc) {
-            input = mainApp.userInput();
+            input = userInput.getStringInput("Enter a letter to select features");
 
             switch (input) {
+                // case one: display mode
                 case "d":
                     System.out.print(inputPrompt);
-                    System.out.println("You entered " + doub + "\n");
+                    System.out.println("You entered d");
                     tester.switchDisplayMode();
+                    break;
+                // enter number case
+                case "e":
+                    varSpace.num1 = userInput.getDoubleInput("Enter a number for display\n");
+                    System.out.println(varSpace.num1);
+                // case two: memory mode
                     break;
                 case "m":
                     System.out.println("You entered " + m + "\n");
+
                     break;
-                case "+":
-                    System.out.println(addPrompt);
-                    float addX = Float.parseFloat(mainApp.userInput());
-                    float addY = Float.parseFloat(mainApp.userInput());
-                    System.out.println(coreCalc.add(addX, addY));
+                case "t":
+                    System.out.println("You entered " + t + "\n");
+
                     break;
+                // case three: goes to arthimetic case in Calculator.java
+                case "a":
+                    System.out.println("Welcome to the arithmetic suite \n");
+                    varSpace.userChoice = userInput.getStringInput("Choose an operator \n + \t - \t * \t / \t square \t sqrt \t 1/x \t +/1 \t x^y \n");
+                    varSpace.num1 =userInput.getDoubleInput("enter first number: ");
+                    varSpace.num2 =userInput.getDoubleInput("second number: ");
+                    // System.out.println(coreCalc.add(addX, addY));
+                    coreCalc.Arithmetic();
+                    break;
+                // case four:
                 case "-":
-                    System.out.println(subPrompt);
-                    double subX = Double.parseDouble(mainApp.userInput());
-                    double subY = Double.parseDouble(mainApp.userInput());
-                    System.out.printf("subtracting %.4f from %.4f gives " +
-                            coreCalc.subtract(subX,subY),subX,subY);
+                    // System.out.println(subPrompt);
+                    double subX = userInput.getDoubleInput("");
+                    double subY = userInput.getDoubleInput("");
+                    System.out.printf("subtracting %.4f from %.4f gives \n" +
+                    coreCalc.subtract(subX,subY),subX,subY);
                     break;
+                // case five:
                 case "*":
-                    int multX = Integer.parseInt(mainApp.userInput());
-                    int multy = Integer.parseInt(mainApp.userInput());
+                    int multX = userInput.getIntegerInput("");
+                    int multy = userInput.getIntegerInput("");
                     System.out.println(coreCalc.multiply(multX,multy));
+                    break;
+                //case six:
                 case "/":
-                    double divX = Double.parseDouble(mainApp.userInput());
-                    double divY = Double.parseDouble(mainApp.userInput());
+                    double divX = userInput.getDoubleInput("");
+                    double divY = userInput.getDoubleInput("");
                     String res = String.valueOf(coreCalc.divide(divX,divY));
                     System.out.println(res);
+                    break;
+                //case seven:
                 case "q":
                     System.out.println(powerOffPrompt);
                     activeCalc = false;
                     exit(5);
+                //default case:
                 default:
                     throw new IllegalStateException("Unexpected value: " + input);
             }
@@ -93,14 +122,14 @@ public class MainApplication {
 
     }
 
-    public String userInput() {
+    /* public String userInput() {
 //        String inputPrompt = "Enter letter to select feature: ";
 //        System.out.print(inputPrompt);
         Scanner sc = new Scanner(System.in);
         String nextMode = sc.nextLine();
 
         return nextMode;
-    }
+    } */
 
     public void displayMenu() {
         String header = "execute scientific features\n";

@@ -12,8 +12,11 @@ public class ScientificFts {
 //    static String powerOffPrompt = "Calculator powering off...";
 //    Calculator calc = new Calculator();
 //    int val = calc.add(15, 18);
-
+    Console userInput = new Console();
+    MainApplication mainApp = new MainApplication();
     public static void main(String[] args) {
+
+
 //        String input;
 //        boolean activeCalc = true;
 //        String d = "d";
@@ -76,7 +79,7 @@ public class ScientificFts {
     }
 
     public String decimalVal(int n) {
-        DecimalFormat df = new DecimalFormat("0.00");
+        DecimalFormat df = new DecimalFormat("0.0000");
         return (df.format(n));
     }
 
@@ -86,8 +89,12 @@ public class ScientificFts {
 
 
     public void switchDisplayMode() {
-        int testVal = 33;
+        Console userInput = new Console();
+        MainApplication mainApp = new MainApplication();
+        int testVal = userInput.getIntegerInput("enter mode, binary, octal, decimal, or hexidecimal\n");
         int count = 0;
+
+
         String arr[] = {binaryVal(testVal), octalVal(testVal),
                 decimalVal(testVal), hexadecimalVal(testVal)};
         String[] modeTitles = {"binary", "octal", "decimal", "hexadecimal"};
@@ -100,9 +107,9 @@ public class ScientificFts {
         System.out.println(displayModesMenu);
 
         boolean activeDisplayMode = true;
-        while (activeDisplayMode) {
-            MainApplication mainApp = new MainApplication();
-            String input = mainApp.userInput();
+        while (activeDisplayMode == true) {
+
+            String input = userInput.getStringInput("enter a string: ");
             switch (input) {
                 case "nm":
                     System.out.println(testVal + " to " + modeTitles[count] +
@@ -134,9 +141,9 @@ public class ScientificFts {
 
     public void switchDisplayMode(String mode) {
         boolean choosingDisplayMode = true;
-        int testVal = 33;
+        int testVal = userInput.getIntegerInput("enter value for switch display mode calc\n binary \t octal \t decimal \t hexademical\n");
 
-        while (choosingDisplayMode) {
+        while (choosingDisplayMode == true) {
             switch (mode) {
                 case "binary":
                     System.out.println("showing binary calculation");
