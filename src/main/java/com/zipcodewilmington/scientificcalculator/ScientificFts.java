@@ -119,7 +119,7 @@ public class ScientificFts {
                             "(binary, octal, decimal, hexadecimal)\n");
                     System.out.println(displayModeChoicePrompt);
 
-                    switchDisplayMode();
+                    switchDisplayMode(mainApp.userInput());
                     break;
                 case "q":
                     MainApplication mainCalc = new MainApplication();

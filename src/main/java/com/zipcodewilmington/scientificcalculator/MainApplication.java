@@ -113,7 +113,7 @@ public class MainApplication {
         String addition = "+: addition calculation\n";
         String subtraction = "-: subtraction calculation\n";
         String multiplication = "*: multiplication calculation\n";
-        String division = "/: division calculation";
+        String division = "/: division calculation\n";
         String quit = "q: quit";
 
         String menu = (header.toUpperCase() + separator +
